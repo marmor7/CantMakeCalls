@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
@@ -86,6 +87,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 		Log.i(TAG, "activity result: request=" + requestCode + ", result=" + resultCode +
 				", Default-app=" + telecomManager.getDefaultDialerPackage());
+
+		String msg = "result=" + (resultCode == RESULT_OK ? "allowed" : "denied") + ", default=" + telecomManager
+				.getDefaultDialerPackage();
+		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+
 		if ((requestCode == 3289) && (resultCode == RESULT_OK)) {
 			makeTheCall();
 		}
