@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import static android.Manifest.permission.CALL_PHONE;
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 	@SuppressLint("MissingPermission")
 	private void makeTheCall() {
-		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:1-800-800-1234"));
+		EditText number = findViewById(R.id.number);
+		Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + number.getText()));
 		startActivity(intent);
 	}
 
